@@ -171,8 +171,44 @@ function convertToRomanNumerals(num) {
  *  '10,5'    => 'one zero point five'
  *  '1950.2'  => 'one nine five zero point two'
  */
-function convertNumberToString(/* numberStr */) {
-  throw new Error('Not implemented');
+function convertNumberToString(numberStr) {
+  const objNum = {
+    0: 'zero',
+    1: 'one',
+    2: 'two',
+    3: 'three',
+    4: 'four',
+    5: 'five',
+    6: 'six',
+    7: 'seven',
+    8: 'eight',
+    9: 'nine',
+    10: 'ten',
+  };
+  let str = '';
+  for (let i = 0; i < numberStr.length; i += 1) {
+    switch (numberStr[i]) {
+      case ',':
+        str += 'point ';
+        break;
+      case '.':
+        str += 'point ';
+        break;
+      case '-':
+        str += 'minus ';
+        break;
+      default:
+        str += `${objNum[+numberStr[i]]} `;
+        break;
+    }
+  }
+  let result = '';
+  for (let j = 0; j < str.length; j += 1) {
+    if (j < str.length - 1) {
+      result += str[j];
+    }
+  }
+  return result;
 }
 
 /**
@@ -187,8 +223,15 @@ function convertNumberToString(/* numberStr */) {
  *  '0123210'   => true
  *  'qweqwe'    => false
  */
-function isPalindrome(/* str */) {
-  throw new Error('Not implemented');
+function isPalindrome(str) {
+  let reverseStr = '';
+  for (let i = 0; i < str.length; i += 1) {
+    reverseStr = str[i] + reverseStr;
+  }
+  if (reverseStr === str) {
+    return true;
+  }
+  return false;
 }
 
 /**
@@ -205,8 +248,13 @@ function isPalindrome(/* str */) {
  *  'qwerty', 'Q'     => -1
  *  'qwerty', 'p'     => -1
  */
-function getIndexOf(/* str, letter */) {
-  throw new Error('Not implemented');
+function getIndexOf(str, letter) {
+  for (let i = 0; i < str.length; i += 1) {
+    if (str[i] === letter) {
+      return i;
+    }
+  }
+  return -1;
 }
 
 /**
@@ -224,8 +272,17 @@ function getIndexOf(/* str, letter */) {
  *  12345, 0    => false
  *  12345, 6    => false
  */
-function isContainNumber(/* num, digit */) {
-  throw new Error('Not implemented');
+function isContainNumber(num, digit) {
+  let lastDigit = 0;
+  let copyNum = num;
+  while (copyNum !== 0) {
+    lastDigit = copyNum % 10;
+    if (lastDigit === digit) {
+      return true;
+    }
+    copyNum = Math.trunc(copyNum / 10);
+  }
+  return false;
 }
 
 /**
